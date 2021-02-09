@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+
+{% form_theme creditCardForm 'formTemplate/form_template.html.twig' %}
+
+{% block body %}
+
+
+    <main>
+        <br>
+        <div class="row">
+            <div class="col-md-6" style="margin: 0 auto">
+
+
+                {{ form_start(creditCardForm, {'attr': {'novalidate': 'novalidate'}}) }}
+
+                <h4 class="mb-3">Save Card</h4>
+
+                <div class="row gy-3">
+                    <div class="col-md-6">
+                        {{ form_row(creditCardForm.fullName) }}
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="cc-number" class="form-label">Credit card number</label>
+                        {{ form_widget(creditCardForm.cardNumber) }}
+                        {{ form_errors(creditCardForm.cardNumber) }}
+                        <small>
+                            <ul>
+                                <li>VISA - 4929433505467962</li>
+                                <li>MASTER CARD - 5481063181897393</li>
+                                <li>DISCOVER - 6011408131777798</li>
+                                <li>AMEX - 342124530788335</li>
+                            </ul>
+                        </small>
+                    </div>
+
+                    <div class="col-md-3">
+                        <label for="cc-expiration" class="form-label">Year</label>
+                        {{ form_widget(creditCardForm.year) }}
+                        {{ form_errors(creditCardForm.year) }}
+                    </div>
+                    <div class="col-md-3">
+                        <label for="cc-expiration" class="form-label">Month</label>
+                        {{ form_widget(creditCardForm.month) }}
+                        {{ form_errors(creditCardForm.month) }}
+                    </div>
+
+                    <div class="col-md-3">
+                        <label for="cc-cvv" class="form-label">CVV</label>
+                        {{ form_widget(creditCardForm.cvv) }}
+                        <labe class="form-label">{{ form_help(creditCardForm.cvv) }}</labe>
+                        {{ form_errors(creditCardForm.cvv) }}
+                    </div>
+
+                    <div class="col-md-12">
+{#                        {{ form_row(creditCardForm.password) }}#}
+                    </div>
+                </div>
+
+                <hr class="my-4">
+
+                <button class="w-100 btn btn-primary btn-lg" type="submit">Continue to checkout</button>
+                {{ form_end(creditCardForm) }}
+            </div>
+        </div>
+    </main>
+{% endblock %}

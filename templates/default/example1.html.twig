@@ -1,0 +1,72 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <main>
+        <br>
+        <div class="row">
+            <div class="col-md-6" style="margin: 0 auto">
+                {% if errors|length > 0 %}
+                    <ul>
+                        {% for error in errors %}
+                            <li>{{ error.message }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+
+                <form class="needs-validation" method="POST">
+
+                    <h4 class="mb-3">Payment</h4>
+
+                    <div class="row gy-3">
+                        <div class="col-md-6">
+                            <label for="cc-name" class="form-label">Name on card</label>
+                            <input type="text" class="form-control" name="fullName" id="name" value="Test User">
+                            <small class="text-muted">Full name as displayed on card</small>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="cc-number" class="form-label">Credit card number</label>
+                            <input type="text" name="cardNumber" class="form-control" id="number" placeholder="">
+                            <small>
+                                <ul>
+                                    <li>VISA - 4929433505467962 - credit card</li>
+                                    <li>MASTER CARD - 5481063181897393 - credit card</li>
+                                    <li>DISCOVER - 6011408131777798 - debit</li>
+                                    <li>AMEX - 342124530788335 - invalid</li>
+                                </ul>
+                            </small>
+                        </div>
+
+                        <div class="col-md-3">
+                            <label for="cc-expiration" class="form-label">Year</label>
+                            <select name="year" class="form-select">
+                                <option value="2021">2021</option>
+                                {% for i in 2021..2029 %}
+                                    <option value="{{ i }}">{{ i }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <label for="cc-expiration" class="form-label">Month</label>
+                            <select name="month" class="form-select">
+                                <option value="1">1</option>
+                                {% for i in 1..12 %}
+                                    <option value="{{ i }}">{{ i }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <div class="col-md-3">
+                            <label for="cc-cvv" class="form-label">CVV</label>
+                            <input type="text" class="form-control" name="cvv" value="234">
+                        </div>
+                    </div>
+
+                    <hr class="my-4">
+
+                    <button class="w-100 btn btn-primary btn-lg" type="submit">Continue to checkout</button>
+                </form>
+            </div>
+        </div>
+    </main>
+{% endblock %}

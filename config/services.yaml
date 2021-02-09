@@ -20,6 +20,8 @@ services:
             - '../src/Entity/'
             - '../src/Kernel.php'
             - '../src/Tests/'
+            - '../src/Validator/Constraints/'
+            - '../src/Service/BinListService.php'
 
     # controllers are imported separately to make sure services can be injected
     # as action arguments even if you don't extend any base controller class
@@ -29,3 +31,10 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+
+    App\Validator\Constraints\CheckCardTypeValidator:
+        class: App\Validator\Constraints\CheckCardTypeValidator
+        tags: ['validator.constraint_validator']
+        arguments:
+            - !service
+                class: App\Service\BinListService
